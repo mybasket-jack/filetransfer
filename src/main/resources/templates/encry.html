@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>文件加密</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- jquery -->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/default.css}" />
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <!--file-input-->
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/fileinput.min.css}" />
+    <script type="text/javascript" th:src="@{/bootstrap/js/fileinput.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/zh.js}"></script>
+    <!-- layer -->
+    <script type="text/javascript" th:src="@{/layer/layer.js}"></script>
+
+</head>
+<body>
+<div class="htmleaf-container">
+    <div class="container kv-main">
+        <div class="page-header" style="text-align: center">
+            <h2>文件加密</h2>
+        </div>
+        <form enctype="multipart/form-data" method="post" action="/file/encryFile">
+            <input id="fileupload" name="file" class="file-loading" accept="text/plain" type="file" >
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    $(function() {
+            $("#fileupload").fileinput({
+            language: 'zh',
+            showUpload: true, //是否显示上传按钮
+            browseLabel:'浏览文件',
+            filePlural:'',
+            elCaptionText:'文件不能超过3M',
+            dropZoneTitle: '选择文件上传<br>支持拖拽文件到这里 &hellip;',
+            allowedFileTypes: ['text'],//配置允许文件上传的类型
+            allowedPreviewTypes : ['text'],//配置所有的被预览文件类型
+            allowedPreviewMimeTypes : ['txt'],//控制被预览的所有mime类型
+            maxFileSize: 3076, //3M 单位KB
+            maxFileCount: 1,
+            validateInitialCount:true,
+            showPreview:true,
+            dropZoneEnabled:true,
+            showCaption: true,//是否显示文件标题，默认为true
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            enctype: 'multipart/form-data'
+        });
+    });
+
+</script>
+</html>
